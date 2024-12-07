@@ -4,12 +4,12 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Card, Button } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
 import useNavigationHelpers from '../functions';
-import { useAuth } from '../AuthContext'; // Import the AuthContext for auth state
-import './ItemsStyles.css'; // Custom styling file
+import { useAuth } from '../AuthContext'; 
+import './ItemsStyles.css'; 
 
 const ItemsSold = () => {
   const { logout } = useNavigationHelpers();
-  const { authState } = useAuth(); // Get the current auth state
+  const { authState } = useAuth(); 
   const [soldItems, setSoldItems] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -26,7 +26,7 @@ const ItemsSold = () => {
       try {
         const response = await axios.get('http://localhost:3000/sold-by-me', {
           headers: { 'Content-Type': 'application/json' },
-          params: { username: authState.username }, // Pass the username as a query parameter
+          params: { username: authState.username }, 
         });
 
         // Process the response to calculate `soldFor` as the highest bid value
@@ -34,12 +34,12 @@ const ItemsSold = () => {
           // Extract highest bid value from the bids array
           const highestBid = item.bids.reduce(
             (max, bid) => (bid.bidValue > max ? bid.bidValue : max),
-            item.minBidValue // Start with the minimum bid value
+            item.minBidValue 
           );
 
           return {
             ...item,
-            soldFor: `$${highestBid.toFixed(2)}`, // Format as currency
+            soldFor: `$${highestBid.toFixed(2)}`, 
           };
         });
 
@@ -109,9 +109,9 @@ const ItemsSold = () => {
                   <Card.Img
                     style={{
                       width: '100%',
-                      height: '250px', // Fixed height for uniformity
-                      objectFit: 'cover', // Ensures aspect ratio is maintained
-                      objectPosition: 'center', // Centers the image within the container
+                      height: '250px', 
+                      objectFit: 'cover', 
+                      objectPosition: 'center', 
                     }} variant="top" src={item.image ? `data:image/jpeg;base64,${item.image}` : 'https://www.svgrepo.com/show/508699/landscape-placeholder.svg'} />
                   <Card.Body>
                     <Card.Title className="card-title">{item.title}</Card.Title>

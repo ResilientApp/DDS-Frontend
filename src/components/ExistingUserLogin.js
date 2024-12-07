@@ -1,16 +1,16 @@
 import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './Signup.css'; // Reuse the same styles
+import './Signup.css'; 
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import { useAuth } from '../AuthContext'; // Import the AuthContext hook
+import { useAuth } from '../AuthContext'; 
 
 const ExistingUserLogin = () => {
   const navigate = useNavigate();
-  const { updateAuthState } = useAuth(); // Correctly access the updateAuthState function from useAuth
+  const { updateAuthState } = useAuth(); 
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [message, setMessage] = useState({ type: '', text: '' }); // Feedback message state
+  const [message, setMessage] = useState({ type: '', text: '' }); 
 
   const handleUsernameChange = (e) => {
     setUsername(e.target.value);
@@ -22,7 +22,7 @@ const ExistingUserLogin = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setMessage({ type: '', text: '' }); // Clear previous messages
+    setMessage({ type: '', text: '' }); 
 
     try {
       const response = await axios.post('http://localhost:3000/login', {
@@ -30,15 +30,14 @@ const ExistingUserLogin = () => {
         password,
       });
 
-      // Update global state with the logged-in username
       updateAuthState({ username });
 
       setMessage({ type: 'success', text: 'Login successful!' });
-      console.log('User data:', response.data); // Optional: Debug user data
-      navigate('/dashboard'); // Redirect to a dashboard or another page
+      console.log('User data:', response.data); 
+      navigate('/dashboard'); 
     } catch (error) {
       if (error.response) {
-        setMessage({ type: 'error', text: error.response.data }); // Show the error message from the backend
+        setMessage({ type: 'error', text: error.response.data }); 
       } else {
         console.log(error);
         setMessage({ type: 'error', text: 'An error occurred. Please try again.' });

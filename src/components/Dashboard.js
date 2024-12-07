@@ -6,13 +6,13 @@ import axios from 'axios';
 import useNavigationHelpers from '../functions';
 import ResVaultSDK from 'resvault-sdk';
 import './Dashboard.css';
-import { useAuth } from '../AuthContext'; // Import the AuthContext hook
+import { useAuth } from '../AuthContext'; 
 import { useNavigate } from 'react-router-dom';
 
 const Dashboard = () => {
   const { goToMyListings, goToNewListing, logout } = useNavigationHelpers();
   const location = useLocation();
-  const { authState } = useAuth(); // Access the current auth state for the username
+  const { authState } = useAuth(); 
   const [listings, setListings] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [bidValue, setBidValue] = useState('');
@@ -29,7 +29,7 @@ const Dashboard = () => {
     const fetchListings = async () => {
       try {
         const response = await axios.get('http://localhost:3000/all-listings');
-        setListings(response.data); // Assuming response.data contains an array of listings
+        setListings(response.data); 
       } catch (error) {
         console.error('Error fetching listings:', error);
         setToastMessage('Error fetching listings. Please try again later.');
@@ -66,18 +66,16 @@ const Dashboard = () => {
     try {
       // Send bid to backend
       const response = await axios.post('http://localhost:3000/post-bid', {
-        username: authState.username, // Replace with your actual username
-        listingId: selectedCard._id, // Assuming _id is the unique identifier for the listing
+        username: authState.username, 
+        listingId: selectedCard._id, // _id is the unique identifier for the listing
         bidValue
       });
 
-      // Handle the response from the backend
-      console.log(response.data); // Success message from the backend
+      console.log(response.data); 
       setToastMessage('Bid placed successfully!');
       setToastVariant('success');
       setShowToast(true);
 
-      // Update the listing with the new bid
       const updatedListings = listings.map(listing => {
         if (listing._id === selectedCard._id) {
           return { ...listing, bids: [...listing.bids, { bidValue, username: authState.username }] };
@@ -152,9 +150,9 @@ const Dashboard = () => {
                   <Card.Img
                     style={{
                       width: '100%',
-                      height: '250px', // Fixed height for uniformity
-                      objectFit: 'cover', // Ensures aspect ratio is maintained
-                      objectPosition: 'center', // Centers the image within the container
+                      height: '250px', 
+                      objectFit: 'cover', 
+                      objectPosition: 'center', 
                     }}
                     variant="top"
                     src={listing.image ? `data:image/jpeg;base64,${listing.image}` : 'https://www.svgrepo.com/show/508699/landscape-placeholder.svg'}
