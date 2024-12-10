@@ -21,10 +21,8 @@ const Dashboard = () => {
   const [toastVariant, setToastVariant] = useState('success');
   const [showToast, setShowToast] = useState(false);
 
-  // Initialize ResVaultSDK
   const sdkRef = useRef(new ResVaultSDK());
 
-  // Fetch listings on component mount
   useEffect(() => {
     const fetchListings = async () => {
       try {
@@ -64,8 +62,7 @@ const Dashboard = () => {
     const recipient = 'DpVsFmC7d5e39MgRkPmfVPR8npJ3RRsRPZhRDzrK7DCm';
 
     try {
-      // Send bid to backend
-      const response = await axios.post('https://resauc.resilientdb.com/api/post-bid', {
+      const response = await axios.post('http://localhost:3000/post-bid', {
         username: authState.username, 
         listingId: selectedCard._id, // _id is the unique identifier for the listing
         bidValue
@@ -84,7 +81,6 @@ const Dashboard = () => {
       });
       setListings(updatedListings);
 
-      // Send message to ResVaultSDK
       sdkRef.current?.sendMessage({
         type: 'commit',
         direction: 'commit',

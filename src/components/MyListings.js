@@ -14,10 +14,10 @@ const MyListings = () => {
   const { authState } = useAuth();
   const [myListingsData, setMyListingsData] = useState([]);
   const [errorMessage, setErrorMessage] = useState('');
-  const [successMessage, setSuccessMessage] = useState(''); // Success message for general actions
-  const [sellErrorMessage, setSellErrorMessage] = useState(''); // Error message specific to selling
-  const [showToast, setShowToast] = useState(false); // State to control the toast visibility
-  const [toastVariant, setToastVariant] = useState('success'); // Controls the color of the toast
+  const [successMessage, setSuccessMessage] = useState(''); 
+  const [sellErrorMessage, setSellErrorMessage] = useState(''); 
+  const [showToast, setShowToast] = useState(false); 
+  const [toastVariant, setToastVariant] = useState('success'); 
 
   useEffect(() => {
     const fetchListings = async () => {

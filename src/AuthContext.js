@@ -5,7 +5,7 @@ const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
   const [authState, setAuthState] = useState(() => {
     const savedState = localStorage.getItem('authState');
-    return savedState ? JSON.parse(savedState) : { username: '' }; // Default to no username
+    return savedState ? JSON.parse(savedState) : { username: '' }; 
   });
 
   const updateAuthState = (newState) => {
@@ -14,8 +14,8 @@ export const AuthProvider = ({ children }) => {
   };
 
   const clearAuthState = () => {
-    setAuthState({ username: '' }); // Reset to default state
-    localStorage.removeItem('authState'); // Clear from localStorage
+    setAuthState({ username: '' }); 
+    localStorage.removeItem('authState'); 
   };
 
   return (
@@ -25,7 +25,6 @@ export const AuthProvider = ({ children }) => {
   );
 };
 
-// Custom hook for easier access
 export const useAuth = () => {
   return useContext(AuthContext);
 };

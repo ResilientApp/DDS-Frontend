@@ -16,7 +16,6 @@ const ItemsBought = () => {
 
   const handleLogout = () => logout();
 
-  // Fetch bought items from the backend
   useEffect(() => {
     const fetchBoughtItems = async () => {
       try {
@@ -26,7 +25,6 @@ const ItemsBought = () => {
         });
         console.log(response)
 
-        // Process the response to calculate `boughtFor` as the highest bid value
         const updatedBoughtItems = response.data.map((item) => {
           const highestBid = item.bids.reduce(
             (max, bid) => (bid.bidValue > max ? bid.bidValue : max),

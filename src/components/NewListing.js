@@ -1,22 +1,22 @@
 import React, { useState, useRef } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './Signup.css'; // Reuse styles
+import './Signup.css'; 
 import axios from 'axios';
 import useNavigationHelpers from '../functions';
 import ResVaultSDK from 'resvault-sdk';
 import { NavLink, useLocation } from 'react-router-dom';
-import { useAuth } from '../AuthContext'; // Import the AuthContext hook
+import { useAuth } from '../AuthContext'; 
 
 const NewListing = () => {
   const { goToMyListings, logout } = useNavigationHelpers();
-  const { authState } = useAuth(); // Access the current auth state for the username
+  const { authState } = useAuth(); 
   const [itemTitle, setItemTitle] = useState('');
   const [description, setDescription] = useState('');
   const [minBidValue, setMinBidValue] = useState('');
   const [file, setFile] = useState(null);
-  const [feedbackMessage, setFeedbackMessage] = useState(null); // For displaying success or error messages
+  const [feedbackMessage, setFeedbackMessage] = useState(null); 
   const sdkRef = useRef(new ResVaultSDK());
-  const location = useLocation(); // Access the current route location
+  const location = useLocation(); 
 
   const submitForm = async (e) => {
     e.preventDefault();
@@ -33,7 +33,7 @@ const NewListing = () => {
 
     const showFeedback = (message, variant) => {
       setFeedbackMessage({ message, type: variant });
-      setTimeout(() => setFeedbackMessage(null), 5000); // Remove message after 5 seconds
+      setTimeout(() => setFeedbackMessage(null), 5000); 
     };
 
     try {
@@ -45,18 +45,15 @@ const NewListing = () => {
           jsonDataCopy.imageBase64 = imageBase64;
           jsonDataCopy.username = authState.username;
 
-          // Send listing to backend
-          const response = await axios.post('https://resauc.resilientdb.com/api/new-listing', JSON.stringify(jsonDataCopy), {
+          const response = await axios.post('http://localhost:3000/new-listing', JSON.stringify(jsonDataCopy), {
             headers: {
               'Content-Type': 'application/json',
             },
           });
 
-          // Handle the response from the backend
-          console.log(response.data); // Success message from the backend
+          console.log(response.data); 
           showFeedback('Listing created successfully!', 'success');
 
-          // Post transaction to ResVaultSDK
           await sdkRef.current?.sendMessage({
             type: 'commit',
             direction: 'commit',
@@ -67,33 +64,30 @@ const NewListing = () => {
 
           console.log('Transaction posted successfully!', jsonData);
           showFeedback('Transaction posted successfully!', 'success');
-          clearFields(); // Clear input fields, including the image file
+          clearFields(); 
         };
         reader.readAsDataURL(file);
       } else {
-        // Send listing to backend
-        const response = await axios.post('https://resauc.resilientdb.com/api/new-listing', jsonData, {
+        const response = await axios.post('http://localhost:3000/new-listing', jsonData, {
           headers: {
             'Content-Type': 'application/json',
           },
         });
 
-        // Handle the response from the backend
-        console.log(response.data); // Success message from the backend
+        console.log(response.data); 
         showFeedback('Listing created successfully!', 'success');
 
-        // Post transaction to ResVaultSDK
         await sdkRef.current?.sendMessage({
           type: 'commit',
           direction: 'commit',
           amount: '1',
-          data: jsonData, // Serialize listing data
-          recipient, // Recipient address
+          data: jsonData, 
+          recipient, 
         });
 
         console.log('Transaction posted successfully!', jsonData);
         showFeedback('Transaction posted successfully!', 'success');
-        clearFields(); // Clear input fields, including the image file
+        clearFields(); 
       }
     } catch (error) {
       console.error('Error creating listing or posting transaction:', error);
@@ -112,8 +106,8 @@ const NewListing = () => {
     setItemTitle('');
     setDescription('');
     setMinBidValue('');
-    setFile(null); // Clear the file input
-    document.getElementById('fileUpload').value = ''; // Reset the file input field visually
+    setFile(null); 
+    document.getElementById('fileUpload').value = ''; 
   };
 
   const handleLogout = () => {

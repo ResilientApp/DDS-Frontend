@@ -27,8 +27,8 @@ const Signup = () => {
         password,
       });
 
-      setFeedbackMessage({ type: 'success', message: response.data }); // Success message
-      setTimeout(() => navigate('/login'), 2000); // Redirect after 2 seconds
+      setFeedbackMessage({ type: 'success', message: response.data }); 
+      setTimeout(() => navigate('/login'), 2000); 
     } catch (error) {
       if (error.response) {
         setFeedbackMessage({ type: 'error', message: error.response.data });

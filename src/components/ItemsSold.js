@@ -20,7 +20,6 @@ const ItemsSold = () => {
     console.log(`Sending receipt for item ID: ${itemId}`);
   };
 
-  // Fetch sold items from the backend
   useEffect(() => {
     const fetchSoldItems = async () => {
       try {
@@ -29,9 +28,7 @@ const ItemsSold = () => {
           params: { username: authState.username }, 
         });
 
-        // Process the response to calculate `soldFor` as the highest bid value
         const updatedSoldItems = response.data.map(item => {
-          // Extract highest bid value from the bids array
           const highestBid = item.bids.reduce(
             (max, bid) => (bid.bidValue > max ? bid.bidValue : max),
             item.minBidValue 

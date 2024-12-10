@@ -1,4 +1,3 @@
-/* General body styling */
 body {
     font-family: 'Poppins', sans-serif;
     background: linear-gradient(135deg, #100f23, #3e429b);
@@ -7,7 +6,6 @@ body {
     padding: 0;
 }
 
-/* Navbar styling */
 .navbar {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
     background-color: #1a1a40;
@@ -48,26 +46,25 @@ body {
     box-shadow: 0 4px 12px rgba(201, 0, 39, 0.5);
 }
 
-/* Card styling with improved visibility */
 .card-hover {
     transition: transform 0.5s ease, box-shadow 0.5s ease, border-radius 0.5s ease;
     border-radius: 16px;
-    background: rgba(0, 0, 0, 0.6); /* Darker background for better contrast */
+    background: rgba(0, 0, 0, 0.6); 
     backdrop-filter: blur(8px);
     overflow: hidden;
-    border: 1px solid rgba(255, 255, 255, 0.2); /* Slightly brighter border */
+    border: 1px solid rgba(255, 255, 255, 0.2); 
 }
 
 .card-hover:hover {
     transform: translateY(-15px);
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.7); /* More prominent shadow */
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.7); 
     border-radius: 24px;
 }
 
 .card-img-top {
     border-top-left-radius: 16px;
     border-top-right-radius: 16px;
-    filter: brightness(0.7); /* Slightly darker image */
+    filter: brightness(0.7); 
     transition: filter 0.3s ease;
 }
 
@@ -97,7 +94,6 @@ body {
     color: #bbb;
 }
 
-/* Minimum Bid Value text styling */
 .card-subtitle.minimum-bid {
     font-size: 18px;
     font-weight: 600;
@@ -105,13 +101,11 @@ body {
     text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
 }
 
-/* List items for bids */
 .text-muted li {
     font-size: 14px;
     color: #ccc;
 }
 
-/* Button gradient */
 .btn-gradient {
     background: linear-gradient(90deg, #3417ff, #100f23);
     border: none;
@@ -132,7 +126,6 @@ body {
     text-decoration: underline;
 }
 
-/* Delete Button (styled similarly to "Sell Item" button) */
 .btn-danger {
     background-color: #e74a3b;
     border-color: #e74a3b;
@@ -150,10 +143,9 @@ body {
     text-decoration: underline;
 }
 
-/* Modal animations */
 .modal-content {
-    background-color: #1a1c1e; /* Set the background color to #1a1c1e */
-    color: #fff; /* Ensure text remains readable with white color */
+    background-color: #1a1c1e; 
+    color: #fff; 
     border-radius: 12px;
     animation: fadeInScale 0.5s ease-in-out;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
@@ -178,7 +170,6 @@ body {
     border-top: 1px solid rgba(255, 255, 255, 0.2);
 }
 
-/* Form inputs in modal */
 .modal-body .form-control {
     background: rgba(255, 255, 255, 0.1);
     color: #fff;
@@ -194,7 +185,6 @@ body {
     box-shadow: 0 0 8px rgba(52, 23, 255, 0.7);
 }
 
-/* Media queries for responsiveness */
 @media (max-width: 768px) {
     .card-hover {
         margin-bottom: 20px;
@@ -206,7 +196,6 @@ body {
     }
 }
 
-/* Additional Styles for Toast Notification */
 .toast-container {
     z-index: 1050;
   }
@@ -216,7 +205,7 @@ body {
     top: 10px;
     right: 10px;
     z-index: 1050;
-    border-radius: 12px; /* Add border-radius for curved edges */
+    border-radius: 12px; 
     font-size: 16px;
   }
   
@@ -224,7 +213,7 @@ body {
     color: white;
     font-weight: bold;
     text-align: center;
-    border-radius: 12px; /* Apply the same border-radius to the content */
+    border-radius: 12px; 
   }
   
   .bg-success {
